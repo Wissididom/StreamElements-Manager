@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>replit Database Manipulator</title>
+		<link rel="stylesheet" href="index.css">
+	</head>
+	<body>
+		<form method="POST" action="api/say.php" target="result">
+			<div class="grid">
+				<label class="col-1" for="jwt_token">JWT-Token:</label>
+				<input class="col-2" type="text" id="jwt_token" name="jwt_token" placeholder="JWT-Token">
+				<label class="col-1" for="message">Message:</label>
+				<textarea class="col-2" id="message" name="message" placeholder="Message to send to Twitch Chat"></textarea><br>
+				<input class="span-cols" type="submit" value="Send">
+			</div>
+		</form>
+		<br>
+		<div class="grid">
+			<label class="col-1">Response:</label><br>
+			<iframe class="span-cols" name="result" id="result"></iframe>
+		</div>
+	</body>
+</html>
