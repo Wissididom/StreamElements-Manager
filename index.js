@@ -23,6 +23,7 @@ function getAccountId() {
 async function say() {
   let guid = document.getElementById('acc_id').value;
   let jwtToken = document.getElementById('jwt_token').value;
+  let textMessage = document.getElementById('message').value;
   await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
     method: 'POST',
     headers: {
