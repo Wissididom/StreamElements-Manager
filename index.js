@@ -1,21 +1,21 @@
-async function getAccountId() {
+function getAccountId() {
   let login = prompt('Please enter your Username');
   if (login)
     login = login.toLowerCase();
   let jwtToken = document.getElementById('jwt_token').value;
-  await fetch(`https://api.streamelements.com/kappa/v2/channels/${login}`, {
+  fetch(`https://api.streamelements.com/kappa/v2/channels/${login}`, {
     headers: {
       'Accept': 'application/json',
       'Authorization': `Bearer ${jwtToken}`,
       'Content-Type': 'application/json'
     }
   }).then(res => {
+    if (!res.ok)
+      console.log(`Non-OK-Response (getAccountId): ${res.status}`);
     return res.json();
   }).then(data => {
     if (data._id)
-      return data._id;
-    else
-      return data;
+      document.getElementById('acc_id').value = data._id;
   }).catch(err => {
     console.log(`Error getting User Guid: ${err}`);
   });
@@ -34,6 +34,8 @@ async function say() {
       message: textMessage
     })
   }).then(res => {
+    if (!res.ok)
+      console.log(`Non-OK-Response (say): ${res.status}`);
     return res.json();
   }).then(data => {
     return data;
