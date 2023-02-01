@@ -4,7 +4,7 @@ async function getAccountId() {
     login = login.toLowerCase();
   let jwtToken = document.getElementById('jwt_token').value;
   await fetch(`https://api.streamelements.com/kappa/v2/channels/${login}`, {
-	  headers: {
+    headers: {
       'Accept': 'application/json',
       'Authorization': `Bearer ${jwtToken}`,
       'Content-Type': 'application/json'
