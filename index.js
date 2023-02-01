@@ -16,6 +16,7 @@ function getAccountId() {
   }).then(data => {
     if (data._id)
       document.getElementById('acc_id').value = data._id;
+    document.getElementById('result').value = JSON.stringify(data);
   }).catch(err => {
     console.log(`Error getting User Guid: ${err}`);
   });
@@ -39,7 +40,7 @@ async function say() {
       console.log(`Non-OK-Response (say): ${res.status}`);
     return res.json();
   }).then(data => {
-    return data;
+    document.getElementById('result').value = JSON.stringify(data);
   }).catch(err => {
     console.log(`Error sending Twitch Message: ${err}`);
   });
