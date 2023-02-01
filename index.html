@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>StreamElements-Manager-JWT</title>
+		<link rel="stylesheet" href="index.css">
+		<script src="index.js"></script>
+	</head>
+	<body>
+		<div class="grid">
+			<label class="col-1" for="jwt_token">JWT-Token:</label>
+			<input class="col-2" type="text" id="jwt_token" name="jwt_token" placeholder="JWT-Token">
+			<label class="col-1" for="acc_id">Account-ID:</label>
+			<input class="col-2" type="text" id="acc_id" name="acc_id" placeholder="Account-ID">
+			<button class="col-2" onclick="getAccountId()">Get Account ID by Username</button>
+			<label class="col-1" for="message">Message:</label>
+			<textarea class="col-2" id="message" name="message" placeholder="Message to send to Twitch Chat"></textarea><br>
+			<button class="span-cols" onclick="say()">Send</button>
+		</div>
+		<br>
+		<div class="grid">
+			<label class="col-1">Response:</label><br>
+			<textarea class="span-cols" name="result" id="result" readonly></textarea>
+		</div>
+	</body>
+</html>
