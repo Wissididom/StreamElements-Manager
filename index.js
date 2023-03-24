@@ -22,6 +22,28 @@ function getAccountId() {
 	});
 }
 
+async function streamElementsSay(guid, jwtToken, message, action) {
+	return await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
+		method: 'POST',
+		headers: {
+			'Accept': 'application/json; charset=utf-8',
+			'Authorization': `Bearer ${jwtToken}`,
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			message
+		})
+	}).then(res => {
+		if (!res.ok)
+			console.log(`Non-OK-Response (${action}): ${res.status}`);
+		return res.json();
+	}).then(data => {
+		document.getElementById('result').value = JSON.stringify(data, null, 2);
+	}).catch(err => {
+		console.log(`Error sending Twitch Message: ${err}`);
+	});
+}
+
 async function getTwitchUser(id) {
 	return new Promise((resolve, reject) => resolve(id)); // TODO: Mock until implementation
 }
@@ -30,25 +52,7 @@ async function say() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let textMessage = document.getElementById('message').value;
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (say): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'say');
 }
 
 async function timeout() {
@@ -63,25 +67,7 @@ async function timeout() {
 	let timeoutreason = document.getElementById('timeoutreason').value.trim();
 	let textMessage = `/timeout ${user} ${timeoutduration}`;
 	if (timeoutreason != null && timeoutreason != '') textMessage += ` ${timeoutreason}`;
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (timeout): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'timeout');
 }
 
 async function ban() {
@@ -95,25 +81,7 @@ async function ban() {
 	let banreason = document.getElementById('banreason').value.trim();
 	let textMessage = `/ban ${user}`;
 	if (banreason != null && banreason != '') textMessage += ` ${banreason}`;
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (ban): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'ban');
 }
 
 async function unban() {
@@ -125,25 +93,7 @@ async function unban() {
 		user = getTwitchUser(user.substring('id:'.length));
 	}
 	let textMessage = `/unban ${user}`;
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (unban): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'unban');
 }
 
 async function del() {
@@ -151,48 +101,12 @@ async function del() {
 	let jwtToken = document.getElementById('jwt_token').value;
 	let messageid = document.getElementById('deleteid').value.trim();
 	let textMessage = `/delete ${messageid}`;
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (delete): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'delete');
 }
 
 async function clch() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let textMessage = '/clear';
-	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
-		method: 'POST',
-		headers: {
-			'Accept': 'application/json; charset=utf-8',
-			'Authorization': `Bearer ${jwtToken}`,
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			message: textMessage
-		})
-	}).then(res => {
-		if (!res.ok)
-			console.log(`Non-OK-Response (clear): ${res.status}`);
-		return res.json();
-	}).then(data => {
-		document.getElementById('result').value = JSON.stringify(data, null, 2);
-	}).catch(err => {
-		console.log(`Error sending Twitch Message: ${err}`);
-	});
+	await streamElementsSay(guid, jwtToken, textMessage, 'clear');
 }
