@@ -59,8 +59,9 @@ async function timeout() {
 	if (isId) {
 		user = getTwitchUser(user.substring('id:'.length));
 	}
+	let timeoutduration = document.getElementById('timeoutduration').value.trim();
 	let timeoutreason = document.getElementById('timeoutreason').value.trim();
-	let textMessage = `/timeout ${user}`;
+	let textMessage = `/timeout ${user} ${timeoutduration}`;
 	if (timeoutreason != null && timeoutreason != '') textMessage += ` ${timeoutreason}`;
 	await fetch(`https://api.streamelements.com/kappa/v2/bot/${guid}/say`, {
 		method: 'POST',
