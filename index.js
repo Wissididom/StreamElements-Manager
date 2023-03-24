@@ -171,7 +171,7 @@ async function del() {
 	});
 }
 
-async function clear() {
+async function clch() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let textMessage = '/clear';
