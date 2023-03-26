@@ -15,6 +15,25 @@
 			<label class="col-1" for="message">Message:</label>
 			<textarea class="col-2" id="message" name="message" placeholder="Message to send to Twitch Chat"></textarea><br>
 			<button class="span-cols" onclick="say()">Send</button>
+			<label class="col-1" for="timeoutuser">User to Timeout:</label>
+			<input class="col-2" type="text" id="timeoutuser" name="timeoutuser" placeholder="User to Timeout">
+			<label class="col-1" for="timeoutduration">Duration for Timeout in Seconds:</label>
+			<input class="col-2" type="number" id="timeoutduration" name="timeoutduration" placeholder="Duration for Timeout in Seconds">
+			<label class="col-1" for="timeoutreason">Reason for Timeout (optional):</label>
+			<input class="col-2" type="text" id="timeoutreason" name="timeoutreason" placeholder="Reason for Timeout (optional)">
+			<button class="span-cols" onclick="timeout()">Timeout</button>
+			<label class="col-1" for="banuser">User to Ban:</label>
+			<input class="col-2" type="text" id="banuser" name="banuser" placeholder="User to Ban">
+			<label class="col-1" for="banreason">Reason for Ban (optional):</label>
+			<input class="col-2" type="text" id="banreason" name="banreason" placeholder="Reason for Ban (optional)">
+			<button class="span-cols" onclick="ban()">Ban</button>
+			<label class="col-1" for="unbanuser">User to Unban/Untimeout:</label>
+			<input class="col-2" type="text" id="unbanuser" name="unbanuser" placeholder="User to Unban/Untimeout">
+			<button class="span-cols" onclick="unban()">Unban/Untimeout</button>
+			<label class="col-1" for="deleteid">Message-ID to Delete:</label>
+			<input class="col-2" type="text" id="deleteid" name="deleteid" placeholder="Message-ID to Delete">
+			<button class="span-cols" onclick="del()">Delete</button>
+			<button class="span-cols" onclick="clch()">Clear Chat</button>
 		</div>
 		<br>
 		<div class="grid">
