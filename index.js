@@ -55,6 +55,13 @@ async function say() {
 	await streamElementsSay(guid, jwtToken, textMessage, 'say');
 }
 
+async function announce() {
+	let guid = document.getElementById('acc_id').value;
+	let jwtToken = document.getElementById('jwt_token').value;
+	let textMessage = document.getElementById('message').value;
+	await streamElementsSay(guid, jwtToken, `/announce ${textMessage}`, 'announce');
+}
+
 async function timeout() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
