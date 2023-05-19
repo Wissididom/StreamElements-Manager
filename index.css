@@ -20,7 +20,6 @@ textarea {
 .grid {
 	display: grid;
 	max-width: 40rem;
-	grid-template-columns: 40% 50%;
 	gap: 10px;
 }
 .col-1 {
