@@ -16,7 +16,6 @@ iframe {
 	width: 50%;
 	float: left;
 	padding: 10px;
-	border: 2px solid red;
 }
 .grid {
 	display: grid;
