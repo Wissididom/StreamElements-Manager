@@ -9,7 +9,8 @@ iframe {
 	padding: 5px;
 }
 textarea {
-	height: 100px;
+	height: 200px;
+	width: 100%;
 }
 .float-child {
 	width: 50%;
