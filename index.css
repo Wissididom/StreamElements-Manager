@@ -8,10 +8,18 @@ textarea,
 iframe {
 	padding: 5px;
 }
+#result {
+	height: 200px;
+	width: calc(100% - 10px); /*100% - parent padding*/
+}
+.float-child {
+	width: 50%;
+	float: left;
+	padding: 10px;
+}
 .grid {
 	display: grid;
 	max-width: 40rem;
-	grid-template-columns: 40% 50%;
 	gap: 10px;
 }
 .col-1 {
