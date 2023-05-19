@@ -8,7 +8,7 @@ textarea,
 iframe {
 	padding: 5px;
 }
-textarea {
+#result {
 	height: 200px;
 	width: calc(100% - 10px); /*100% - parent padding*/
 }
