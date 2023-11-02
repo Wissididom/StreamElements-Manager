@@ -44,10 +44,6 @@ async function streamElementsSay(guid, jwtToken, message, action) {
 	});
 }
 
-async function getTwitchUser(id) {
-	return new Promise((resolve, reject) => resolve(id)); // TODO: Mock until implementation
-}
-
 async function say() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
@@ -66,10 +62,6 @@ async function timeout() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let user = document.getElementById('timeoutuser').value.toLowerCase();
-	let isId = user.startsWith('id:');
-	if (isId) {
-		user = getTwitchUser(user.substring('id:'.length));
-	}
 	let timeoutduration = document.getElementById('timeoutduration').value.trim();
 	let timeoutreason = document.getElementById('timeoutreason').value.trim();
 	let textMessage = `/timeout ${user} ${timeoutduration}`;
@@ -81,10 +73,6 @@ async function ban() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let user = document.getElementById('banuser').value.toLowerCase();
-	let isId = user.startsWith('id:');
-	if (isId) {
-		user = getTwitchUser(user.substring('id:'.length));
-	}
 	let banreason = document.getElementById('banreason').value.trim();
 	let textMessage = `/ban ${user}`;
 	if (banreason != null && banreason != '') textMessage += ` ${banreason}`;
@@ -95,10 +83,6 @@ async function unban() {
 	let guid = document.getElementById('acc_id').value;
 	let jwtToken = document.getElementById('jwt_token').value;
 	let user = document.getElementById('unbanuser').value.toLowerCase();
-	let isId = user.startsWith('id:');
-	if (isId) {
-		user = getTwitchUser(user.substring('id:'.length));
-	}
 	let textMessage = `/unban ${user}`;
 	await streamElementsSay(guid, jwtToken, textMessage, 'unban');
 }
