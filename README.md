@@ -1,1 +1,1 @@
-# StreamElements-Manager-JWT
+# StreamElements-Manager
